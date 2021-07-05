@@ -1,0 +1,96 @@
+.topbar {
+    width: 100%;
+    height: 50px;
+    background-color: #1877f2;
+    
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+
+    &-left {
+        flex: 3;
+
+        & span {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+    }
+
+    &-center {
+        flex: 5;
+
+        .searchbar {
+            width: 100%;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+
+            .search-icon {
+                font-size: 20px;
+                margin: 0 5px;
+            }
+
+            .search-input {
+                border: none;
+                width: 80%;
+
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    &-right {
+        flex: 4;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    
+        &-link {
+            color: #fff;
+            
+            & span:first-child {
+                margin-right: 15px;
+            }
+        }
+
+        &-icons {
+            display: flex;
+            color: #fff;
+
+            .icon-item {
+                margin-right: 15px;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .badge {
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                background-color: red;
+                border-radius: 50%;
+                font-size: 11px;
+                top: -5px;
+                right: -5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+        }
+        & img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+}

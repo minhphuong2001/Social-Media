@@ -1,0 +1,16 @@
+.not-found {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h2 {
+        font-size: 100px;
+    }
+
+    p {
+        font-size: 24px;
+    }
+}

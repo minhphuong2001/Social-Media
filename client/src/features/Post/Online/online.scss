@@ -1,0 +1,30 @@
+.list-friend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .friend-detail {
+        position: relative;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: limegreen;
+            bottom: 2px;
+            right: 0;
+        }
+    }
+
+    .username {
+        margin-left: 15px;
+    }
+}

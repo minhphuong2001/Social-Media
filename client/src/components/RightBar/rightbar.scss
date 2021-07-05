@@ -1,0 +1,115 @@
+.rightbar {
+    flex: 3;
+    height: calc(100vh - 52px);
+    overflow-y: scroll;
+    position: sticky;
+    top: 50px;
+
+    &-container {
+        padding: 20px 20px 0 0 ;
+
+        .birthday-container {
+            background-color: #f3f3f3;
+            border-radius: 10px;
+
+            .main {
+                padding: 10px;
+
+                .birthday-friend {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 15px;
+
+                    .gift-icon {
+                        font-size: 32px;
+                        color: #ff3f34;
+                        margin-right: 5px;
+                    }
+                }
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                }
+
+            }
+            
+        }
+
+        .friend-container {
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            margin-top: 20px;
+
+            .main-cont {
+                padding: 10px;
+
+                h4 {
+                    font-size: 18px;
+                    color: rgb(150, 150, 150);
+                    margin-bottom: 20px;
+                }
+
+                .list-friend {
+                    list-style: none;
+                }
+                
+            }
+        }
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(182, 182, 182);
+    border-radius: 30px;
+}
+
+.text {
+    font-size: 20px;
+}
+
+.profile-infor {
+
+    &-item {
+        margin: 10px 0;
+        color: #555;
+
+        & span:first-child {
+            margin-right: 5px;
+        }
+    }
+}
+
+.following {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    &-detail {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+
+        margin-bottom: 20px;
+        margin-right: 15px;
+
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+    }
+}
