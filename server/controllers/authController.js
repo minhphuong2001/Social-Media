@@ -170,7 +170,7 @@ module.exports = {
                 return next(new ErrorResponse(400, "You already follow this user"));
             }
         } else {
-            return next(new ErrorResponse(400, "You cant follow yourself"));
+            return next(new ErrorResponse(403, "You cant follow yourself"));
         }
     }),
 
@@ -193,7 +193,7 @@ module.exports = {
                 return next(new ErrorResponse(400, "You dont follow this user"));
             }
         } else {
-            return next(new ErrorResponse(400, "You cant unfollow yourself"));
+            return next(new ErrorResponse(403, "You cant unfollow yourself"));
         }
     }),
 
@@ -235,5 +235,29 @@ module.exports = {
         //     })
         // }
         
-    }
+    },
+
+    // @route [GET] api/auth/friends/:userId
+    // @desc get friends
+    getFriends: asyncHandle(async (req, res, next) => {
+        const user = await User.findById(req.params.userId);
+        const friends = await Promise.all(
+            user.followings.map((friendId) => {
+                return User.findById(friendId);
+            })
+        )
+        let friendList = [];
+        friends.map((item) => {
+            const { _id, username, profilePicture } = item;
+            friendList.push({ _id, username, profilePicture });
+        })
+
+        res.json({
+            success: true,
+            data: friendList
+        })
+
+        
+    })
+
 }

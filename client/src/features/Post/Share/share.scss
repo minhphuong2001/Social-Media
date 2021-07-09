@@ -1,6 +1,5 @@
 .share {
     width: 100%;
-    height: 170px;
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 16px -3px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 16px -3px rgba(0, 0, 0, 0.68);
@@ -11,25 +10,25 @@
         .share-top {
             display: flex;
             align-items: center;
-        }
 
-        & img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 10px;
-        }
-
-        & input {
-            width: 80%;
-            background-color: #f1f1f1;
-            border: none;
-            border-radius: 50px;
-            padding: 8px 10px;
-
-            &:focus {
-                outline: none;
+            & img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+    
+            & input {
+                width: 80%;
+                background-color: #f1f1f1;
+                border: none;
+                border-radius: 50px;
+                padding: 8px 10px;
+    
+                &:focus {
+                    outline: none;
+                }
             }
         }
 
@@ -39,11 +38,29 @@
             text-align: center;
         }
 
+        .share-img-container {
+            padding: 0 20px 10px 20px;
+            position: relative;
+
+            .share-img {
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .share-cancel {
+                position: absolute;
+                top: 0;
+                right: 20px;
+                cursor: pointer;
+            }
+        }
+
         .share-bottom {
-            width: 90%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 30px;
 
             .share-option {
                 display: flex;

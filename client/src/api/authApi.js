@@ -17,6 +17,18 @@ const authApi = {
         const url = 'auth/confirm';
 
         return axiosClient.get(url);
+    },
+
+    followFriend: (userId) => {
+        const url = `auth/${userId}/follow`
+
+        return axiosClient.put(url);
+    },
+
+    unfollowFriend: (userId) => {
+        const url = `auth/${userId}/unfollow`
+
+        return axiosClient.put(url);
     }
 
 };

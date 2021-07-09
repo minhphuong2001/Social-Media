@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 export default function Topbar() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const user = useSelector(state => state.auth.user);
-    console.log(user);
+    // console.log(user);
 
     const style = {
         textDecoration: "none",
@@ -32,7 +32,11 @@ export default function Topbar() {
             <div className="topbar-right">
                 <div className="topbar-right-link">
                     <Link to={`/profile/${user.username}`} style={style}>
-                        <span>{user.username}</span>
+                        <img
+                            src={user.profilePicture ? PF + user.profilePicture : PF + "person/noAvatar.png"}
+                            alt=""
+                        />
+                        <span className="link-user">{user.username}</span>
                     </Link>
                     
                     <span>Timeline</span>
@@ -51,10 +55,8 @@ export default function Topbar() {
                         <span className="badge">1</span>
                     </div>
                 </div>
-                <img
-                    src={user.profilePicture ? PF + user.profilePicture : PF + "person/noAvatar.png"}
-                    alt=""
-                />
+                <button>Log out</button>
+                
             </div>
         </div>
     )

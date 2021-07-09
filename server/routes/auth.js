@@ -15,4 +15,6 @@ router.post("/login", authController.login)
 router.get("/", authController.getUser)
 router.put("/:id/follow", authController.followUser)
 router.put("/:id/unfollow", authController.unfollowUser)
+router.get("/friends/:userId", authController.getFriends)
+
 module.exports = router;

@@ -9,15 +9,18 @@ export default function Feed({username}) {
 
     const [posts, setPosts] = useState([]);
     const user = useSelector(state => state.auth.user);
-    console.log(user);
+    // console.log(user.username);
+    // console.log(username);
     
     useEffect(() => {
         const fetchPosts = async () => {
             const res = username ?
                 await axios.get(`${process.env.REACT_APP_API}post/profile/` + username )
                : await axios.get(`${process.env.REACT_APP_API}post/timeline/` + user._id);
-            console.log(res.data.data);
-            setPosts(res.data.data);
+            // console.log(res.data.data);
+            setPosts(res.data.data.sort((a, b) => {
+                return new Date(b.createdAt) - new Date(a.createdAt)
+            }));
         }
         
         fetchPosts();
@@ -25,7 +28,7 @@ export default function Feed({username}) {
 
     return (
         <div className="feed">
-            <Share />
+            { (!username || username === user.username) && <Share />}
             {
                 posts.map((item) => {
                     return (

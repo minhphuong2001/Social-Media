@@ -8,8 +8,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import authApi from '../../api/authApi'
 import {LOCAL_STORAGE_TOKEN_NAME} from '../../constants/global'
 import {getUser} from './authSlice'
-import ProtectedRoute from '../../components/routing/ProtectedRoute'
-// import Loading from '../../components/Loading/Loading'
+// import ProtectedRoute from '../../components/routing/ProtectedRoute'
+import Loading from '../../components/Loading/Loading'
 
 function Auth() {
     const dispatch = useDispatch();
@@ -87,7 +87,7 @@ function Auth() {
     }
 
     const body = authLoading ? (
-        <div>Loading</div>
+        <Loading/>
     ) : (
         <Container fluid={true}>
             <div className="auth">

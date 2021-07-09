@@ -5,6 +5,7 @@ import './postDetail.scss'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
+import { useSelector } from 'react-redux'
 
 export default function PostDetail({ post }) {
    
@@ -12,8 +13,19 @@ export default function PostDetail({ post }) {
     const [isLiked, setIsLiked] = useState(false);
     const [user, setUser] = useState([])
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const currentUser = useSelector(state => state.auth.user)
+
+    useEffect(() => {
+        setIsLiked(post.likes.includes(currentUser._id))
+    },[currentUser._id, post.likes])
 
     const handleLikeClick = () => {
+        try {
+            axios.put(`${process.env.REACT_APP_API}post/${post._id}/like` ,{ userId: currentUser._id});
+    
+        } catch (err) {
+            console.log(err.message);
+        }
         setLike(isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked);
     }
@@ -48,8 +60,8 @@ export default function PostDetail({ post }) {
                     </div>
                 </div>
                 <div className="post-center">
-                    <p>{user.description}</p>
-                    <img src={PF+post.image} alt="" />
+                    <p>{post.description}</p>
+                    <img src={PF+post.image || PF+"/upload/"+post.image} alt="" />
                 </div>
                 <div className="post-bottom" >
                     <div className="post-bottom-left">

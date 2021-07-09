@@ -5,12 +5,12 @@ const { verifyAccessToken } = require("../middleware/verifyToken");
 const router = express.Router();
 
 router.get("/", verifyAccessToken, postController.getPost)
-router.post("/", verifyAccessToken, postController.create)
+router.post("/", postController.create)
 
 router.get("/:id", verifyAccessToken, postController.getPostById)
 router.put("/:id", verifyAccessToken, postController.update)
 router.delete("/:id", verifyAccessToken, postController.delete)
-router.put("/:id/like", verifyAccessToken, postController.likePost)
+router.put("/:id/like", postController.likePost)
 
 router.get("/timeline/:userId", postController.getTimeline)
 router.get("/profile/:username", postController.getAllPost)

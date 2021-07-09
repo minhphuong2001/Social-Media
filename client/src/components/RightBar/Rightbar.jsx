@@ -1,12 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './rightbar.scss'
-import { CardGiftcard } from '@material-ui/icons'
+import { Add, CardGiftcard, Remove } from '@material-ui/icons'
 import gift from '../../assets/images/gift.jpg'
-import avatar from '../../assets/images/avatar.jpg'
+// import avatar from '../../assets/images/avatar.jpg'
 import Users from '../../global/user'
 import Online from '../../features/Post/Online/Online'
+import axios from 'axios'
+import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
+import { follow, unfollow } from '../../features/Auth/authSlice'
 
 export default function Rightbar({ user }) {
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const currentUser = useSelector(state => state.auth.user);
+    const [friends, setFriends] = useState([]);
+    const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const getFriend = async () => {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_API}auth/friends/${user._id}`);
+                setFriends(res.data.data);
+                // console.log(res.data.data);
+
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        getFriend();
+    }, [user])
+
+    const style = {
+        textDecoration: "none",
+        color: "#000"
+    }
+
+    const handleFollowClick = async() => {
+        try {
+            if (followed) {
+                const unfollowData = axios.put(`${process.env.REACT_APP_API}auth/${user._id}/unfollow`, {userId: currentUser._id});
+                console.log(unfollowData);
+                const action = unfollow(unfollowData.user);
+                dispatch(action);
+            } else {
+                const followData = axios.put(`${process.env.REACT_APP_API}auth/${user._id}/follow`, {userId: currentUser._id});
+                console.log(followData);
+                const action = follow(followData.user);
+                dispatch(action);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+
+        setFollowed(!followed);
+    }
     
     const HomeRightbar = () => {
         return (
@@ -44,6 +94,14 @@ export default function Rightbar({ user }) {
     const ProfileRightbar = () => {
         return (
             <>
+                {
+                    user.username !== currentUser.username && (
+                        <button className="add-follow" onClick={handleFollowClick}>
+                            {followed ? "Unfollow" : "Follow"}
+                            {followed ? <Remove /> : <Add />}
+                        </button>
+                    )
+                }
                 <h4 className="text">User Information</h4>
                 <div className="profile-infor">
                     <div className="profile-infor-item">
@@ -65,30 +123,20 @@ export default function Rightbar({ user }) {
 
                 <h4 className="text">User friends</h4>
                 <div className="following">
-                    <div className="following-detail">
-                        <img src={avatar} alt="" />
-                        <span>Min Min</span>
-                    </div>
-                    <div className="following-detail">
-                        <img src={avatar} alt="" />
-                        <span>Min Min</span>
-                    </div>
-                    <div className="following-detail">
-                        <img src={avatar} alt="" />
-                        <span>Min Min</span>
-                    </div>
-                    <div className="following-detail">
-                        <img src={avatar} alt="" />
-                        <span>Min Min</span>
-                    </div>
-                    <div className="following-detail">
-                        <img src={avatar} alt="" />
-                        <span>Min Min</span>
-                    </div>
-                    <div className="following-detail">
-                        <img src={avatar} alt="" />
-                        <span>Min Min</span>
-                    </div>
+                    {friends.map((item,index) => {
+                        return (
+                            <Link to={"/profile/" + item.username} style={style}>
+                                <div className="following-detail" key={item.id}>
+                                    <img
+                                        src={item.profilePicture ? PF + item.profilePicture : PF + "person/noAvatar.png"}
+                                        alt=""
+                                    />
+                                    <span>{item.username}</span>
+                                </div>
+                            </Link>
+                            
+                        )
+                    })}
                 </div>
             </>
         )

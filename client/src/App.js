@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getUser());
-    console.log('get user');
+    // console.log('get user');
   }, [dispatch]);
 
   return (

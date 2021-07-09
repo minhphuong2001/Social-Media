@@ -39,10 +39,32 @@ const authSlice = createSlice({
                 isAuthenticated: true
             }
         },
+
         authToken: (state, action) => {
             state.user = action.payload.user;
             state.isAuthenticated = action.payload.isAuthenticated;
         },
+
+        follow: (state, action) => {
+            const userId = action.payload.userId;
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    followings: [...state.user.followings, userId]
+                }
+            }
+        },
+
+        unfollow: (state, action) => {
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    followings: state.user.followings.filter((following) => following !== action.payload.userId)
+                }
+            }
+        }
     },
     extraReducers: {
         [getUser.pending]: (state) => {
@@ -60,5 +82,5 @@ const authSlice = createSlice({
 
 const { reducer, actions } = authSlice;
 
-export const { login, authToken } = actions;
+export const { login, authToken, follow, unfollow } = actions;
 export default reducer;

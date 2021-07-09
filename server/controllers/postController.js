@@ -9,10 +9,10 @@ module.exports = {
     //@route [POST] api/post
     //@desc create a post 
     create: asyncHandle(async (req, res, next) => {
-        const { description, image, likes } = req.body;
+        // const { description, image, likes } = req.body;
 
-        const newPost = new Post({ description, image, likes, user: req.userId });
-
+        // const newPost = new Post({ description, image, likes, user: req.userId });
+        const newPost = new Post(req.body)
         await newPost.save();
 
         res.json({
