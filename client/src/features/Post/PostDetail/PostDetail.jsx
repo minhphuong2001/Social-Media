@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
 import { useSelector } from 'react-redux'
+import CommentDetail from '../../Comment/CommentDetail/CommentDetail'
 
 export default function PostDetail({ post }) {
    
@@ -73,7 +74,14 @@ export default function PostDetail({ post }) {
                         <p>{post.comment} comments</p>
                     </div>
                 </div>
+
+                <div className="comment">
+                <hr/>
+                <CommentDetail/>
             </div>
+            </div>
+
+            
         </div>
     )
 }

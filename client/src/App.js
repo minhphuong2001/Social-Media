@@ -7,6 +7,7 @@ import Profile from './page/Profile/Profile';
 import NotFound from './components/NotFound/NotFound'
 import {useDispatch} from 'react-redux'
 import { getUser } from './features/Auth/authSlice';
+import Messenger from './page/Messenger/Messenger';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
 
           <Route path="/login" component={Auth}></Route>
           <Route path="/register" component={Auth}></Route>
+          <Route path="/messenger" component={Messenger}></Route>
 
           <Route component={NotFound}></Route>
 

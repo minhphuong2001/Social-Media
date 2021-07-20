@@ -15,7 +15,7 @@
             color: #fff;
             font-size: 24px;
             font-weight: bold;
-            margin-left: 20px;
+            margin-left: 10px;
             cursor: pointer;
         }
     }
@@ -59,13 +59,6 @@
             .link-user {
                 margin: 0 15px 0 10px;
             }
-
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
         }
 
         &-icons {
@@ -93,18 +86,41 @@
 
             }
         }
-        & button {
-            background-color: #000;
-            color: #fff;
-            border: none;
 
-            padding: 5px 10px;
-            font-size: 16px;
-            font-weight: 500;
+        .show {
+            position: relative;
 
-            &:focus {
-                outline: none;
+            img {
+                width: 30px;
+                height: 30px;
+
+                right: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+
+                position: relative;
+                cursor: pointer;
+            }
+    
+            .menu-list {
+                position: absolute;
+                background-color: #fff;
+                color: #000;
+                z-index: 100;
+
+                margin-top: 5px;
+                right: 2px;
+                width: 100px;
+    
+                &-item {
+                    padding: 5px 10px;
+
+                    &:hover {
+                        background-color: rgb(204, 204, 204);
+                    }
+                }
             }
         }
+        
     }
 }
