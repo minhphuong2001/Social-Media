@@ -3,6 +3,7 @@ const postRouter = require("./post");
 const uploadRouter = require("./upload"); 
 const conversationRouter = require("./conversation"); 
 const messageRouter = require("./message"); 
+const commentRouter = require("./comment"); 
 const errorHandle = require("../middleware/errorHandle");
 
 module.exports = (app) => {
@@ -15,6 +16,8 @@ module.exports = (app) => {
     app.use("/api/conversation", conversationRouter);
 
     app.use("/api/message", messageRouter);
+
+    app.use("/api/comment", commentRouter)
 
     app.use(errorHandle);
 }

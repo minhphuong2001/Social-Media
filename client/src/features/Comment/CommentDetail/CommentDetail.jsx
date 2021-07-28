@@ -1,40 +1,49 @@
 import { CameraAlt, Gif, InsertEmoticon } from '@material-ui/icons'
-import React, { useState } from 'react'
-import avatar from '../../../assets/images/avatar.jpg'
+import React, { useEffect, useState } from 'react'
 import './cmtDetail.scss'
-
-
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 export default function CommentDetail() {
-    const comments = [
-            {
-                avatar: `${avatar}`,
-                name: 'Minh Phương',
-                content: 'Đáng sợ thế giới'
-            },
-            {
-                avatar: `${avatar}`,
-                name: 'Minh Phương',
-                content: 'Đáng sợ thế giới'
-            },
-    ]
     const [comment, setComment] = useState('');
-    const [commentArr, setCommentArr] = useState([...comments])
+    const [commentArr, setCommentArr] = useState([]);
+    const user = useSelector(state => state.auth.user);
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        const getComment = async () => {
+            try {
+                const dataComment = await axios.get(`${process.env.REACT_APP_API}comment`);
+                // console.log(dataComment.data.data);
+                setCommentArr(dataComment.data.data);
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        getComment();
+    }, [])
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
-            content: comment
+            user: user._id,
+            text: comment
         }
-        const newComment = [...commentArr, data];
-        setCommentArr(newComment);
-        setComment('');
+
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_API}comment`, data);
+            setCommentArr([...commentArr, res.data.data]);
+            setComment('');
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     return (
         <div className="comment-detail">
             <div className="write-comment">
-                <img src={avatar} alt="" className="avatar" />
+                <img src={user?.profilePicture ? PF + user.profilePicture : PF + "person/noAvatar.png"} alt="" className="avatar" />
                 <form onSubmit={handleSubmit} className="form">
                     <input
                         type="text"
@@ -56,10 +65,10 @@ export default function CommentDetail() {
                     commentArr.map((item,index) => {
                         return (
                             <div className="user-comment" key={index}>
-                                <img src={item.avatar} alt="" className="avatar" />
+                                <img src={item.user.profilePicture ? PF + item.user.profilePicture : PF + "person/noAvatar.png"} alt="" className="avatar" />
                                 <div className="user-comment-item">
-                                    <span>{item.name}</span>
-                                    <span>{item.content}</span>
+                                    <span>{item.user.username}</span>
+                                    <span>{item.text}</span>
                                 </div>
                             </div>
                         )
