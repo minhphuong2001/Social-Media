@@ -29,12 +29,11 @@ export default function Topbar() {
                 <Link to="/home" style={{textDecoration: "none"}}>
                     <span>Min</span>
                 </Link>
-
             </div>
             <div className="topbar-center">
                 <div className="searchbar">
                     <Search className="search-icon"/>
-                    <input placeholder="Search for friend" className="search-input"/>
+                    <input placeholder="Search for friends" className="search-input"/>
                 </div>
             </div>
             <div className="topbar-right">
@@ -43,7 +42,7 @@ export default function Topbar() {
                         <span className="link-user">{user.username}</span>
                     </Link>
                     
-                    <span>Timeline</span>
+                    <span className="timeline">Timeline</span>
                 </div>
                 <div className="topbar-right-icons">
                     <div className="icon-item">
@@ -51,8 +50,11 @@ export default function Topbar() {
                         <span className="badge">1</span>
                     </div>
                     <div className="icon-item">
-                        <Chat/>
-                        <span className="badge">2</span>
+                        <Link to="/messenger" style={style}> 
+                            <Chat/>
+                            <span className="badge">2</span>
+                        </Link>
+                        
                     </div>
                     <div className="icon-item">
                         <Notifications/>

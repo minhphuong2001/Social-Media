@@ -88,10 +88,10 @@ export default function Share() {
 
                         <div className="share-option-item">
                             <EmojiEmotions className="emoji-icon"/>
-                            <span>Feelings/Actions</span>
+                            <span className="feel">Feelings</span>
                         </div>
                     </div>
-                    <button type="submit">Share</button>
+                    <button className="btn-share" type="submit">Share</button>
                 </form>
             </div>
         </div>

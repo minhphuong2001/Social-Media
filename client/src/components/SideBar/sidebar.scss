@@ -50,3 +50,9 @@
     background-color: rgb(182, 182, 182);
     border-radius: 30px;
 }
+
+@media (max-width: (960px and 1024px)) {
+    .sidebar {
+        display: none;
+    }
+}

@@ -135,3 +135,15 @@
         outline: none;
     }
 }
+
+@media (max-width: (960px and 1024px)) {
+    .rightbar {
+        flex: 2;
+    }
+}
+
+@media (max-width: (768px)) {
+    .rightbar {
+        display: none;
+    }
+}

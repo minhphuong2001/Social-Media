@@ -80,8 +80,6 @@ export default function PostDetail({ post }) {
                 <CommentDetail/>
             </div>
             </div>
-
-            
         </div>
     )
 }

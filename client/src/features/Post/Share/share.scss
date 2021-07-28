@@ -105,3 +105,79 @@
         }
     }
 }
+
+@media (max-width: (960px and 1024px)) {
+    .share {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: (800px)) {
+    .share {
+        width: 85%;
+    }
+}
+
+
+@media (max-width: (768px)) {
+    .share {
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: (666px)) {
+    .share {
+        width: 90%;
+
+        .share-bottom {
+            display: unset!important;
+        }
+
+        .btn-share {
+            width: 90%;
+            margin: 5px 20px;
+        }
+    }   
+}
+
+@media (max-width: 576px) and (min-width: 400px) {
+    .share {
+        width: 100%;
+        margin: 0 auto;
+    }  
+
+    .share-top {
+        & input{
+            font-size: 16px;
+        }
+    }
+    
+    .share-option-item {
+        & span {
+            font-size: 12px;
+        }
+    }
+}
+
+@media (max-width: (400px)) {
+    .share {
+       width: 100%;
+
+       &-top {
+            & img {
+                width: 30px!important;
+                height: 30px!important;
+            }
+
+            & input {
+                font-size: 13px;
+            }
+       }
+    }
+
+    .feel, .emoji-icon {
+        display: none!important;
+    }
+}

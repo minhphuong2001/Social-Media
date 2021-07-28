@@ -6,7 +6,7 @@
         display: flex;
         position: relative;
 
-        & form {
+        .form {
             width: 92%;
         }
 
@@ -65,5 +65,32 @@
             height: 35px;
             border-radius: 50%;
             object-fit: cover;
+    }
+}
+
+@media (max-width: 960px) {
+    .write-comment {
+
+        .form {
+            width: 90%!important;
+        }
+
+        .emoji {
+            right: 20px!important;
+        }
+    }
+    
+}
+
+@media (max-width: 576px) and (min-width: 400px) {
+    .write-comment {
+
+        .form {
+            width: 85%!important;
+        }
+
+        .emoji {
+            margin-right: 5px;
+        }
     }
 }

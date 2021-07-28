@@ -17,8 +17,8 @@
         & p {
             padding: 10px;
             border-radius: 20px;
-            background-color: #1877f2;
-            color: #fff;
+            background-color: rgb(228, 228, 228);
+            color: #000;
             max-width: 300px;
         }
     }
@@ -31,8 +31,8 @@
         align-items: flex-end;
 
         & p {
-            background-color: rgb(228, 228, 228);
-            color: #000;
+            background-color: #1877f2;
+            color: #fff;
         }
     }
 }

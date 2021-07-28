@@ -41,12 +41,12 @@ export default function Rightbar({ user }) {
     const handleFollowClick = async() => {
         try {
             if (followed) {
-                const unfollowData = axios.put(`${process.env.REACT_APP_API}auth/${user._id}/unfollow`, {userId: currentUser._id});
+                const unfollowData = await axios.put(`${process.env.REACT_APP_API}auth/${user._id}/unfollow`, {userId: currentUser._id});
                 console.log(unfollowData);
                 const action = unfollow(unfollowData.user);
                 dispatch(action);
             } else {
-                const followData = axios.put(`${process.env.REACT_APP_API}auth/${user._id}/follow`, {userId: currentUser._id});
+                const followData = await axios.put(`${process.env.REACT_APP_API}auth/${user._id}/follow`, {userId: currentUser._id});
                 console.log(followData);
                 const action = follow(followData.user);
                 dispatch(action);
@@ -125,8 +125,8 @@ export default function Rightbar({ user }) {
                 <div className="following">
                     {friends.map((item,index) => {
                         return (
-                            <Link to={"/profile/" + item.username} style={style}>
-                                <div className="following-detail" key={item.id}>
+                            <Link to={"/profile/" + item.username} style={style} key={index}>
+                                <div className="following-detail" key={index}>
                                     <img
                                         src={item.profilePicture ? PF + item.profilePicture : PF + "person/noAvatar.png"}
                                         alt=""

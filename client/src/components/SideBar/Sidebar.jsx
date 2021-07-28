@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './sidebar.scss'
 // import avatar from '../../assets/images/avatar.jpg'
 import { Bookmark, Event, GroupAdd, HelpOutline, PeopleAlt, PlayCircleFilledOutlined, School, SportsEsports, Work } from '@material-ui/icons'

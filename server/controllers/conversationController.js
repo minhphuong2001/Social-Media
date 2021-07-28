@@ -21,7 +21,7 @@ module.exports = {
         })
     }),
 
-    // @route [GET] api/conversation
+    // @route [GET] api/conversation/:userId
     // @desc get conversation of a user 
     getConversation: asyncHandle(async (req, res, next) => {
         const conversation = await Conversation.find({

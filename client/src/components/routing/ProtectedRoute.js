@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Loading from '../Loading/Loading'
 
 function ProtectedRoute(WrappedComponent) {
     function HOC(props) {
@@ -9,7 +10,7 @@ function ProtectedRoute(WrappedComponent) {
 
         if(authLoading) {
             return (
-                <div>Loading</div>
+                <Loading />
             )
         }
         

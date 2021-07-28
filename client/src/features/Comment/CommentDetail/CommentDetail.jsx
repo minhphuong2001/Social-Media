@@ -1,5 +1,5 @@
 import { CameraAlt, Gif, InsertEmoticon } from '@material-ui/icons'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import avatar from '../../../assets/images/avatar.jpg'
 import './cmtDetail.scss'
 
@@ -30,14 +30,12 @@ export default function CommentDetail() {
         setCommentArr(newComment);
         setComment('');
     }
-    // useEffect(() => {
-    // }, [commentArr])
 
     return (
         <div className="comment-detail">
             <div className="write-comment">
                 <img src={avatar} alt="" className="avatar" />
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="form">
                     <input
                         type="text"
                         name=""
