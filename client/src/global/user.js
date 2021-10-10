@@ -36,7 +36,7 @@ const Users = [
     },
     {
         id: 8,
-        username: 'Thu Tô',
+        username: 'Nguyễn Thắng',
         profilePicture: 'person/8.jpg'
     },
     {

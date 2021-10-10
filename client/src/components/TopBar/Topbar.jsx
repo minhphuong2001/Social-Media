@@ -27,7 +27,7 @@ export default function Topbar() {
         <div className="topbar">
             <div className="topbar-left">
                 <Link to="/home" style={{textDecoration: "none"}}>
-                    <span>Min</span>
+                    <span>Home Page</span>
                 </Link>
             </div>
             <div className="topbar-center">

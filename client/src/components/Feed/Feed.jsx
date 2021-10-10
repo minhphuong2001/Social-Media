@@ -9,8 +9,6 @@ export default function Feed({username}) {
 
     const [posts, setPosts] = useState([]);
     const user = useSelector(state => state.auth.user);
-    // console.log(user.username);
-    // console.log(username);
     
     useEffect(() => {
         const fetchPosts = async () => {

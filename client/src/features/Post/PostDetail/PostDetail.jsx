@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Favorite, MoreVert, ThumbUpAlt } from '@material-ui/icons'
+import { Delete, Edit, Favorite, MoreVert, ThumbUpAlt } from '@material-ui/icons'
 import './postDetail.scss'
 // import Users from '../../../global/user'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
-import { useSelector } from 'react-redux'
+import { useSelector} from 'react-redux'
 import CommentDetail from '../../Comment/CommentDetail/CommentDetail'
 
 export default function PostDetail({ post }) {
    
     const [like, setLike] = useState(post.likes.length);
     const [isLiked, setIsLiked] = useState(false);
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const currentUser = useSelector(state => state.auth.user)
+    const currentUser = useSelector(state => state.auth.user);
 
     useEffect(() => {
         setIsLiked(post.likes.includes(currentUser._id))
@@ -40,6 +41,22 @@ export default function PostDetail({ post }) {
         fetchUser();
     }, [post.user])
 
+    const handleOpen = () => {
+        setIsOpen(!isOpen);
+    }
+
+    const handleDeletePost = () => {
+        try {
+            currentUser ? axios.delete(`${process.env.REACT_APP_API}post/${post._id}`) :
+                alert("You can't delete this post!");
+            
+            window.location.reload();
+        } catch(err) {
+            console.log(err.message);
+        }
+        setIsOpen(false);
+    }
+
     return (
         <div className="post-detail">
             <div className="post-detail-container">
@@ -57,7 +74,7 @@ export default function PostDetail({ post }) {
                         <span className="date">{format(post.createdAt)}</span>
                     </div>
                     <div className="post-top-right">
-                        <MoreVert />
+                        <MoreVert onClick={handleOpen}/>
                     </div>
                 </div>
                 <div className="post-center">
@@ -80,6 +97,22 @@ export default function PostDetail({ post }) {
                 <CommentDetail/>
             </div>
             </div>
+            {
+                isOpen ?
+                    <div className="post-edit">
+                        <ul>
+                            <li onClick={handleDeletePost}>
+                                <span><Delete style={{fontSize: 18}}/></span>
+                                Delete post
+                            </li>
+                            <li>
+                                <span><Edit style={{fontSize: 18}}/></span>
+                                
+                                Update post
+                            </li>
+                        </ul>
+                    </div> : null
+            }
         </div>
     )
 }
