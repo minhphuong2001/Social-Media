@@ -25,6 +25,3 @@ to folder client: cd client
 ```bash 
 yarn start
 ```
-
----- test---------
-minh phuong do
